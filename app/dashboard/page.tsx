@@ -1,6 +1,4 @@
 "use client"
-
-import Cookie from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 
 interface Website {
@@ -38,15 +36,8 @@ interface Website {
     lastName: string;
     projects: Project[];
   }
-  
-  interface DashboardData {
-    message: string;
-    user: User;
-    token: string;
-    exp: number;
-  }
 
-const Dashboard: React.FC<{ data: DashboardData }> = () => {
+const Dashboard: React.FC = () => {
   const [res, setRes] = useState<any>(null);
   const [err, setErr] = useState<any>(null);
 
@@ -111,7 +102,7 @@ const Dashboard: React.FC<{ data: DashboardData }> = () => {
         <div className="mt-6">
           <h2 className="text-xl font-semibold mb-2">Projects</h2>
           <ul>
-            {projects.map((project, index) => (
+            {projects.map((project: Project, index: number) => (
               <li key={index} className="bg-gray-200 rounded p-2 mb-2">
                 <p><strong>Name:</strong> {project.projectName}</p>
                 <p><strong>Status:</strong> {project.status}</p>
