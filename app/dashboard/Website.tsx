@@ -1,4 +1,9 @@
-import { useEffect, useState } from 'react';
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
+ 
+export const getServerSideProps = (async ({context}) => {
+  const res = fetch('/api/v1/websites');
+  return { props: { res } }
+}) satisfies GetServerSideProps
 
 function WebsiteCard({ website }) {
     return (
@@ -17,13 +22,10 @@ function WebsiteCard({ website }) {
     );
   }
 
-export default async function Website({ id }) {
-    const response = await fetch(`/api/websites/${id}`);
-        const result = await response.json();
-
+export default function Website({ res }) {
   return (
     <li className="bg-gray-200 rounded p-2 mb-2">
-      <WebsiteCard website={result}  />
+      <WebsiteCard website={res}  />
     </li>
   );
 }
