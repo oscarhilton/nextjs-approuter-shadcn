@@ -10,7 +10,7 @@ const nextConfig = {
     rewrites: async () => [
         {
             source: '/api/:path*',
-            destination: 'https://payload-cms-development-6c1d.up.railway.app/api/:path*',
+            destination: 'http://localhost:3000/api/:path*',
         },
     ],
 }
